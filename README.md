@@ -1,10 +1,10 @@
-# CoderSchool FTW - * GitHub Project Team Name *
+# CoderSchool FTW - _ GitHub Project Team Name _
 
 Created with love by: `teammates.map(teammate => teammate.name)`
-  
+
 View online at: `Your URL here`
-  
-One or two sentence summary of your project, anything fun that you liked. 
+
+One or two sentence summary of your project, anything fun that you liked.
 
 ## Video Walkthrough
 
@@ -20,7 +20,7 @@ To create a GIF, use [LiceCap](http://www.cockos.com/licecap/), [RecordIt](http:
 
 The following **required** functionalities are completed:
 
-- [ ] The user can enter a repository in a search bar, click "search", and see the associated issues. The repository should be of the format `owner/repo-name`, e.g. `facebook/react`.
+- [DONE] The user can enter a repository in a search bar, click "search", and see the associated issues. The repository should be of the format `owner/repo-name`, e.g. `facebook/react`.
 - [ ] If the repository does not exist, the user should see a proper error message.
 - [ ] The user should be able to see the following information for each issue:
   - Issue Title with Number of the issue
@@ -42,7 +42,7 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-* [x] List anything else cool you did
+- [x] List anything else cool you did
 
 ## Time Spent and Lessons Learned
 

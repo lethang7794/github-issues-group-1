@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
 import IssueList from "./components/IssueList";
 import SearchForm from "./components/SearchForm";
-import NavBar from "./components/NavBar";
+import SiteNavBar from "./components/SiteNavBar";
 
 function App() {
   const [issues, setIssues] = useState([]);
@@ -33,7 +33,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar />
+      <SiteNavBar />
       <Container>
         <h1 className="text-center title">GitHub Issues Browser</h1>
         <SearchForm
