@@ -3,6 +3,10 @@
   margin-bottom: 2rem;
 }
 
+/* ========================================================
+                       SEARCH FORM
+==========================================================*/
+
 .search-form-wrapper {
   display: flex;
   justify-content: center;
@@ -10,19 +14,23 @@
 }
 .search-form-wrapper input,
 .search-form-wrapper button {
-  height: 2.5em;
   margin: 1em 0.5em;
   border-radius: 8px;
+  outline: none;
 }
 
 .search-form-wrapper input {
-  width: 30vw;
-  border: 1.5px solid gray;
+  height: 3em;
+  width: 50vw;
+  border: 1.5px solid rgb(202, 202, 202);
+  padding: 0 1rem;
 }
 
 .search-form-wrapper button {
+  height: 3rem;
   width: 5em;
-  background-color: rgb(70, 70, 70);
+  background-color: #d64641;
   color: white;
   border: none;
+  font-size: 1.3rem;
 }
