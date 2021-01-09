@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
 import IssueList from "./components/IssueList";
 import SearchForm from "./components/SearchForm";
+import SiteNavBar from "./components/SiteNavBar";
 
 function App() {
   const [issues, setIssues] = useState([]);
@@ -11,6 +12,7 @@ function App() {
   const [url, setUrl] = useState(
     "https://api.github.com/repos/octocat/hello-world/issues"
   );
+
   useEffect(() => {
     async function fetchData() {
       let data = await fetch(url);
@@ -29,15 +31,18 @@ function App() {
   };
 
   return (
-    <Container>
-      <h1 className="text-center">GitHub Issues Browser</h1>
-      <SearchForm
-        handleChange={handleChange}
-        handleClick={handleClick}
-        searchTerm={searchTerm}
-      />
-      <IssueList issues={issues} />
-    </Container>
+    <div className="App">
+      <SiteNavBar />
+      <Container>
+        <h1 className="text-center title">GitHub Issues Browser</h1>
+        <SearchForm
+          handleChange={handleChange}
+          handleClick={handleClick}
+          searchTerm={searchTerm}
+        />
+        <IssueList issues={issues} />
+      </Container>
+    </div>
   );
 }
 
