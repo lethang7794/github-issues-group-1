@@ -54,7 +54,14 @@ function App() {
   }, [url]);
 
   const handleClick = () => {
-    setUrl(`https://api.github.com/repos/${searchTerm}/issues`);
+    // Tidy up the searchTerm: remove http://github.com at the beginning and the slash at the end.
+    let newSearchTerm = searchTerm.replaceAll(
+      /^https:\/\/github\.com\/|\/$/g,
+      ""
+    );
+
+    setSearchTerm(newSearchTerm);
+    setUrl(`https://api.github.com/repos/${newSearchTerm}/issues`);
   };
 
   const handleChange = (e) => {
