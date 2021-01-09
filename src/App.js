@@ -11,12 +11,27 @@ function App() {
   const [url, setUrl] = useState(
     "https://api.github.com/repos/octocat/hello-world/issues"
   );
+
   useEffect(() => {
     async function fetchData() {
-      let data = await fetch(url);
-      let json = await data.json();
-      setIssues(json);
+      try {
+        let response = await fetch(url);
+        let result = await response.json();
+
+        if (response.ok) {
+          setIssues(result);
+        } else {
+          console.log(
+            'There is an error. We still receive a response from the server. But it says: "Not Found!" ...'
+          );
+        }
+      } catch (error) {
+        console.log(
+          "There is an error. e.g. No internet. We don't receive any response from the server."
+        );
+      }
     }
+
     fetchData();
   }, [url]);
 
