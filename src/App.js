@@ -9,7 +9,7 @@ import SiteNavBar from "./components/SiteNavBar";
 
 function App() {
   const [issues, setIssues] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("octocat/hello-world");
   const [url, setUrl] = useState(
     "https://api.github.com/repos/octocat/hello-world/issues"
   );
@@ -27,23 +27,20 @@ function App() {
 
         let response = await fetch(url);
         let result = await response.json();
-
         console.log(response);
+
         if (response.ok) {
           setIssues(result);
         } else {
-          console.log(
-            'There is an error. We still receive a response from the server. But it says somethings, e.g. "Not Found!"'
-          );
+          console.log("Error in response");
+          setIssues([]);
           setIsError(true);
           setError(["response", response.status, response.statusText]);
         }
       } catch (error) {
+        console.log("Error in fetch");
         setIsError(true);
         setError(["fetch"]);
-        console.log(
-          "There is an error. e.g. No internet. We don't receive any response from the server."
-        );
       }
     }
 
