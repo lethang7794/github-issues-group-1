@@ -34,3 +34,24 @@
   border: none;
   font-size: 1.3rem;
 }
+
+/* ========================================================
+                          ISSUES
+==========================================================*/
+.issue-item {
+  display: flex;
+  margin: 2rem 0;
+}
+.issue-item ul li {
+  list-style-type: none;
+}
+
+.issue-item .avatar {
+  width: 8em;
+  height: 8em;
+}
+
+.issue-item .title {
+  min-width: 5em;
+  margin-right: 0.5rem;
+}
