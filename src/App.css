@@ -1,4 +1,28 @@
 .title {
-  margin-top: 5rem;
+  margin-top: 7rem;
   margin-bottom: 2rem;
+}
+
+.search-form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-form-wrapper input,
+.search-form-wrapper button {
+  height: 2.5em;
+  margin: 1em 0.5em;
+  border-radius: 8px;
+}
+
+.search-form-wrapper input {
+  width: 30vw;
+  border: 1.5px solid gray;
+}
+
+.search-form-wrapper button {
+  width: 5em;
+  background-color: rgb(70, 70, 70);
+  color: white;
+  border: none;
 }
