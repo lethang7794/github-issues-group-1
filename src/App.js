@@ -19,9 +19,14 @@ function App() {
   // Can only pass the error type, status, status text, url as an array.
   const [error, setError] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     async function fetchData() {
       try {
+        // Show loading Spinner when beginning fetching
+        setIsLoading(true);
+
         // Reset isError state, later if there is an error, set isError to true.
         setIsError(false);
 
@@ -42,6 +47,7 @@ function App() {
         setIsError(true);
         setError(["fetch"]);
       }
+      setIsLoading(false);
     }
 
     fetchData();
@@ -66,7 +72,8 @@ function App() {
           searchTerm={searchTerm}
         />
         {isError && <ErrorMessage error={error} />}
-        <IssueList issues={issues} />
+
+        {isLoading ? <div>Loading</div> : <IssueList issues={issues} />}
       </Container>
     </div>
   );
