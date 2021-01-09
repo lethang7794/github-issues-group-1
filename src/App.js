@@ -12,7 +12,6 @@ function App() {
   const [url, setUrl] = useState(
     "https://api.github.com/repos/octocat/hello-world/issues"
   );
-  // const [error, setError] = useState();
 
   useEffect(() => {
     async function fetchData() {
@@ -21,7 +20,7 @@ function App() {
       setIssues(json);
     }
     fetchData();
-  }, [url]); //url here is a dependency
+  }, [url]);
 
   const handleClick = () => {
     setUrl(`https://api.github.com/repos/${searchTerm}/issues`);
