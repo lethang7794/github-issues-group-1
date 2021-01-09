@@ -9,9 +9,17 @@ import SiteNavBar from "./components/SiteNavBar";
 
 function App() {
   const [issues, setIssues] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("octocat/hello-world");
+
+  let initialSearchTerm;
+  if (localStorage.getItem("searchTerm")) {
+    initialSearchTerm = localStorage.getItem("searchTerm");
+  } else {
+    initialSearchTerm = "octocat/hello-world";
+  }
+
+  const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
   const [url, setUrl] = useState(
-    "https://api.github.com/repos/octocat/hello-world/issues"
+    `https://api.github.com/repos/${initialSearchTerm}/issues`
   );
 
   const [isError, setIsError] = useState(false);
@@ -20,6 +28,10 @@ function App() {
   const [error, setError] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("searchTerm", searchTerm);
+  }, [searchTerm]);
 
   useEffect(() => {
     async function fetchData() {
