@@ -5,6 +5,7 @@ import { Container } from "react-bootstrap";
 import IssueList from "./components/IssueList";
 import SearchForm from "./components/SearchForm";
 import ErrorMessage from "./components/ErrorMessage";
+import SiteNavBar from "./components/SiteNavBar";
 
 function App() {
   const [issues, setIssues] = useState([]);
@@ -58,18 +59,19 @@ function App() {
   };
 
   return (
-    <Container>
-      <h1 className="text-center">GitHub Issues Browser</h1>
-      <SearchForm
-        handleChange={handleChange}
-        handleClick={handleClick}
-        searchTerm={searchTerm}
-      />
-
-      {isError && <ErrorMessage error={error} />}
-
-      <IssueList issues={issues} />
-    </Container>
+    <div className="App">
+      <SiteNavBar />
+      <Container>
+        <h1 className="text-center title">GitHub Issues Browser</h1>
+        <SearchForm
+          handleChange={handleChange}
+          handleClick={handleClick}
+          searchTerm={searchTerm}
+        />
+        {isError && <ErrorMessage error={error} />}
+        <IssueList issues={issues} />
+      </Container>
+    </div>
   );
 }
 

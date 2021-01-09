@@ -1,0 +1,36 @@
+.title {
+  margin-top: 7rem;
+  margin-bottom: 2rem;
+}
+
+/* ========================================================
+                       SEARCH FORM
+==========================================================*/
+
+.search-form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-form-wrapper input,
+.search-form-wrapper button {
+  margin: 1em 0.5em;
+  border-radius: 8px;
+  outline: none;
+}
+
+.search-form-wrapper input {
+  height: 3em;
+  width: 50vw;
+  border: 1.5px solid rgb(202, 202, 202);
+  padding: 0 1rem;
+}
+
+.search-form-wrapper button {
+  height: 3rem;
+  width: 5em;
+  background-color: #d64641;
+  color: white;
+  border: none;
+  font-size: 1.3rem;
+}
