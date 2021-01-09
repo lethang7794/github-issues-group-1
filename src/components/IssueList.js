@@ -2,6 +2,8 @@ import React from "react";
 import Moment from "react-moment";
 
 const IssueList = ({ issues }) => {
+  if (issues.length === 0) return null;
+
   return (
     <div>
       <h2>{issues.id} Issue list</h2>
