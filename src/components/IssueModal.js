@@ -1,0 +1,39 @@
+import React, { useEffect, useState } from "react";
+import { Modal, Button } from "react-bootstrap";
+
+const IssueModal = ({ showModal, handleCloseModal, issue }) => {
+  const [comments, setComments] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      if (issue && issue.comments_url) {
+        let result = await fetch(issue.comments_url);
+        let json = await result.json();
+        setComments(json);
+      }
+    }
+    fetchData();
+  }, [issue]);
+  return (
+    <Modal show={showModal} onHide={handleCloseModal}>
+      <Modal.Header closeButton>
+        <Modal.Title>{issue.title}</Modal.Title>
+      </Modal.Header>
+      <ul>
+        {comments.map((c) => (
+          <li>{c.body}</li>
+        ))}
+      </ul>
+      <Modal.Body>{issue.body}</Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onclick={handleCloseModal}>
+          Close
+        </Button>
+        <Button variant="primary" onclick={handleCloseModal}>
+          Save Changes
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+};
+
+export default IssueModal;
