@@ -1,6 +1,19 @@
-.title {
-  margin-top: 7rem;
-  margin-bottom: 2rem;
+.main-title {
+  padding: 3rem 0 1.5rem 0;
+}
+
+.fixed {
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 4em;
+  box-shadow: 1px 1px 7px 1px rgb(235, 235, 235);
+}
+
+.issues {
+  margin-top: 21em;
+  padding: 0;
 }
 
 /* ========================================================
@@ -11,6 +24,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 2em;
 }
 .search-form-wrapper input,
 .search-form-wrapper button {
@@ -33,4 +47,78 @@
   color: white;
   border: none;
   font-size: 1.3rem;
+}
+
+#noUnderline {
+  text-decoration: none;
+  color: rgb(59, 59, 59);
+}
+
+/* ========================================================
+                          ISSUES
+==========================================================*/
+
+.issue-item {
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid lightgray;
+}
+.issue-item .content-body {
+  width: calc(90% - 9em);
+}
+
+.issue-item .content-body .title {
+  margin-right: 0.8rem;
+}
+.issue-item:hover {
+  background-color: rgb(241, 241, 241);
+}
+
+.issue-item ul li {
+  list-style-type: none;
+}
+
+.issue-item .avatar {
+  width: 9em;
+  height: 9em;
+}
+
+.issue-item .title {
+  min-width: 5em;
+}
+
+.issue-item .gray-text {
+  color: rgb(145, 145, 145);
+  margin-right: 0.5rem;
+}
+
+.issue-item .user-id {
+  color: #d646419f;
+}
+
+.issue-item .description {
+  height: 7.5em;
+  font-size: 1.5rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin: 1rem 0;
+  text-justify: inter-word;
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.description::-webkit-scrollbar {
+  display: none;
+}
+
+.issue-item .time-and-comment {
+  display: flex;
+  justify-content: space-between;
+}
+
+.issue-item .content-body .last-updated {
+  margin-right: 0.5rem;
 }
