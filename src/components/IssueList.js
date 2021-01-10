@@ -1,6 +1,8 @@
 import React from "react";
 
 const IssueList = ({ issues }) => {
+  if (issues.length === 0) return null;
+
   return (
     <div>
       <h2>Issue list</h2>

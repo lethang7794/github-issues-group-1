@@ -9,7 +9,7 @@ import SiteNavBar from "./components/SiteNavBar";
 
 function App() {
   const [issues, setIssues] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("octocat/hello-world");
   const [url, setUrl] = useState(
     "https://api.github.com/repos/octocat/hello-world/issues"
   );
@@ -19,39 +19,49 @@ function App() {
   // Can only pass the error type, status, status text, url as an array.
   const [error, setError] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     async function fetchData() {
       try {
+        // Show loading Spinner when beginning fetching
+        setIsLoading(true);
+
         // Reset isError state, later if there is an error, set isError to true.
         setIsError(false);
 
         let response = await fetch(url);
         let result = await response.json();
-
         console.log(response);
+
         if (response.ok) {
           setIssues(result);
         } else {
-          console.log(
-            'There is an error. We still receive a response from the server. But it says somethings, e.g. "Not Found!"'
-          );
+          console.log("Error in response");
+          setIssues([]);
           setIsError(true);
           setError(["response", response.status, response.statusText]);
         }
       } catch (error) {
+        console.log("Error in fetch");
         setIsError(true);
         setError(["fetch"]);
-        console.log(
-          "There is an error. e.g. No internet. We don't receive any response from the server."
-        );
       }
+      setIsLoading(false);
     }
 
     fetchData();
   }, [url]);
 
   const handleClick = () => {
-    setUrl(`https://api.github.com/repos/${searchTerm}/issues`);
+    // Tidy up the searchTerm: remove http://github.com at the beginning and the slash at the end.
+    let newSearchTerm = searchTerm.replaceAll(
+      /^https:\/\/github\.com\/|\/$/g,
+      ""
+    );
+
+    setSearchTerm(newSearchTerm);
+    setUrl(`https://api.github.com/repos/${newSearchTerm}/issues`);
   };
 
   const handleChange = (e) => {
@@ -69,7 +79,8 @@ function App() {
           searchTerm={searchTerm}
         />
         {isError && <ErrorMessage error={error} />}
-        <IssueList issues={issues} />
+
+        {isLoading ? <div>Loading</div> : <IssueList issues={issues} />}
       </Container>
     </div>
   );
