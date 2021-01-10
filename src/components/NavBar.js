@@ -5,7 +5,7 @@ import logo from "../images/logo-coderSchool.png";
 const NavBar = () => {
   return (
     <div>
-      <Navbar class="p-3" expand="s" variant="light" bg="light" fixed="top">
+      <Navbar className="p-3" expand="s" variant="light" bg="light" fixed="top">
         <Navbar.Brand href="#">
           <img src={logo} alt="CoderSchool" width="200px" />
         </Navbar.Brand>
