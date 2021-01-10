@@ -20,8 +20,8 @@ const IssueList = ({ issues }) => {
                 <span className="title">#{i.id}</span>
                 <span className="title">{i.title}</span>
               </h4>
-              <div className="sub-body">
-                <span className="gray-text">@{i.user.login}</span>
+              <div>
+                <span className="gray-text user-id">@{i.user.login}</span>
                 <div className="description">{i.body}</div>
                 <div className="time-and-comment">
                   <span>

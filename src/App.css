@@ -73,10 +73,15 @@
   margin-right: 0.5rem;
 }
 
+.issue-item .user-id {
+  color: #d646419f;
+}
+
 .issue-item .description {
   height: 8em;
   display: flex;
   align-items: center;
+  font-size: 1.5rem;
 }
 
 .issue-item .time-and-comment {
