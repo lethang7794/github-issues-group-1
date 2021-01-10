@@ -47,7 +47,7 @@
 }
 
 .issue-item .avatar {
-  width: 8em;
+  min-width: 8em;
   height: 8em;
 }
 
