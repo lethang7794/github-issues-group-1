@@ -78,7 +78,8 @@
   border-bottom: 1px solid lightgray;
 }
 .issue-item .content-body {
-  width: calc(90% - 9em);
+  /* width: calc(90% - 9em); */
+  width: 100%;
 }
 
 .issue-item .content-body .title {
@@ -111,6 +112,11 @@
 
 .issue-item .number {
   margin-right: 0.5rem;
+}
+
+.issue__body {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 /* ========================================================
@@ -164,4 +170,26 @@ ul.labels ul li {
 .Spinner {
   display: flex;
   justify-content: center;
+}
+
+.Modal {
+  padding-right: 17px;
+}
+
+.Modal .modal-title {
+  font-weight: bold;
+}
+
+.Modal .modal-dialog {
+  max-width: 992px;
+}
+
+.Modal .modal-content {
+  padding: 1rem;
+  word-break: break-all;
+}
+
+.Modal .modal-body {
+  padding-left: 2rem;
+  padding-right: 2rem;
 }

@@ -95,7 +95,7 @@ function App() {
         handleClick={handleClick}
         searchTerm={searchTerm}
       />
-      <Container className="col-sm-12 col-lg-9 m-sm-0">
+      <Container className="col-sm-12 col-lg-9">
         {isError && <ErrorMessage error={error} />}
         {isLoading ? (
           <Loader
