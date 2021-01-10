@@ -1,18 +1,14 @@
+.App {
+  /* Prevent jumping scrollbar  */
+  padding-right: calc(17px - (100vw - 100%));
+}
+
 .main-title {
   padding: 3rem 0 1.5rem 0;
 }
 
-.fixed {
-  background-color: rgb(255, 255, 255);
-  position: fixed;
-  width: 100%;
-  left: 0;
-  top: 4em;
-  box-shadow: 1px 1px 7px 1px rgb(235, 235, 235);
-}
-
 .issues {
-  margin-top: 21em;
+  /* margin-top: 21em; */
   padding: 0;
 }
 
@@ -21,11 +17,19 @@
 ==========================================================*/
 
 .search-form-wrapper {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 2em;
+
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 2px 2px -2px gray;
 }
+
 .search-form-wrapper input,
 .search-form-wrapper button {
   margin: 1em 0.5em;
@@ -52,6 +56,11 @@
 #noUnderline {
   text-decoration: none;
   color: rgb(59, 59, 59);
+}
+
+.error-message-wrapper {
+  border: 2px solid #d64641;
+  text-align: center;
 }
 
 /* ========================================================
@@ -100,19 +109,19 @@
 .issue-item .description {
   height: 7.5em;
   font-size: 1.5rem;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  /* overflow-y: scroll;
+  overflow-x: hidden; */
   margin: 1rem 0;
   text-justify: inter-word;
   /* Hide scrollbar for IE, Edge and Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  /* -ms-overflow-style: none; IE and Edge
+  scrollbar-width: none; Firefox */
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
-.description::-webkit-scrollbar {
+/* .description::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .issue-item .time-and-comment {
   display: flex;
@@ -121,4 +130,9 @@
 
 .issue-item .content-body .last-updated {
   margin-right: 0.5rem;
+}
+
+.Spinner {
+  display: flex;
+  justify-content: center;
 }

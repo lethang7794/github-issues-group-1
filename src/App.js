@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { Container } from "react-bootstrap";
 import IssueList from "./components/IssueList";
 import SearchForm from "./components/SearchForm";
@@ -11,23 +12,20 @@ import Loader from "react-loader-spinner";
 
 function App() {
   const [issues, setIssues] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedIssue, setSelectedIssue] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
   const [url, setUrl] = useState(
     "https://api.github.com/repos/octocat/hello-world/issues"
   );
   const [isError, setIsError] = useState(false);
-  // Can't pass down to ErrorMessage component the whole response/result object.
-  // Can only pass the error type, status, status text, url as an array.
   const [error, setError] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedIssue, setSelectedIssue] = useState({});
-  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
       try {
         setIsLoading(true);
-        // Reset isError state, later if there is an error, set isError to true.
         setIsError(false);
 
         let response = await fetch(url);
@@ -40,6 +38,7 @@ function App() {
           console.log(
             'There is an error. We still receive a response from the server. But it says somethings, e.g. "Not Found!"'
           );
+          setIssues([]);
           setIsError(true);
           setError(["response", response.status, response.statusText]);
         }
@@ -60,6 +59,10 @@ function App() {
     setUrl(`https://api.github.com/repos/${searchTerm}/issues`);
   };
 
+  const handleClose = () => {
+    setShowModal(false);
+  };
+
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -75,28 +78,26 @@ function App() {
   return (
     <div className="App">
       <SiteNavBar />
+      <h1 className="text-center main-title">GitHub Issues Browser</h1>
+      <SearchForm
+        handleChange={handleChange}
+        handleClick={handleClick}
+        searchTerm={searchTerm}
+      />
       <Container class="col-sm-12 col-lg-9 m-sm-0">
-        <div className="fixed">
-          <h1 className="text-center main-title">GitHub Issues Browser</h1>
-          <SearchForm
-            handleChange={handleChange}
-            handleClick={handleClick}
-            searchTerm={searchTerm}
-          />
-        </div>
         {isError && <ErrorMessage error={error} />}
         {isLoading ? (
           <Loader
+            className="Spinner"
             type="Puff"
             color="#00BFFF"
             height={100}
             width={100}
-            timeout={3000} //3 secs
+            // timeout={3000} //3 secs
           />
         ) : (
           <IssueList issues={issues} handleIssueClick={handleIssueClick} />
         )}
-        console.log(isLoading);
       </Container>
       <IssueModal
         showModal={showModal}

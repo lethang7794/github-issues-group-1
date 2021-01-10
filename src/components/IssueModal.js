@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
+import ReactMarkdown from "react-markdown";
 
 const IssueModal = ({ showModal, handleCloseModal, issue }) => {
   const [comments, setComments] = useState([]);
