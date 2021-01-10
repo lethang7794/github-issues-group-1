@@ -6,6 +6,7 @@ import IssueList from "./components/IssueList";
 import SearchForm from "./components/SearchForm";
 import ErrorMessage from "./components/ErrorMessage";
 import SiteNavBar from "./components/SiteNavBar";
+import IssueModal from "./components/IssueModal";
 
 function App() {
   const [issues, setIssues] = useState([]);
@@ -28,6 +29,16 @@ function App() {
   const [error, setError] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
+
+  /* ========================================================
+                          ISSUE MODAL
+  ==========================================================*/
+  const [selectedIssue, setSelectedIssue] = useState(null);
+
+  const [showModal, setShowModal] = useState(false);
+
+  const handleCloseModal = () => setShowModal(false);
+  /* ==========================================================*/
 
   useEffect(() => {
     localStorage.setItem("searchTerm", searchTerm);
@@ -80,6 +91,12 @@ function App() {
     setSearchTerm(e.target.value);
   };
 
+  const handleIssueClick = (issue) => {
+    console.log(issue);
+    setSelectedIssue(issue);
+    setShowModal(true);
+  };
+
   return (
     <div className="App">
       <SiteNavBar />
@@ -90,9 +107,20 @@ function App() {
           handleClick={handleClick}
           searchTerm={searchTerm}
         />
+
+        <IssueModal
+          showModal={showModal}
+          handleCloseModal={handleCloseModal}
+          selectedIssue={selectedIssue}
+        />
+
         {isError && <ErrorMessage error={error} />}
 
-        {isLoading ? <div>Loading</div> : <IssueList issues={issues} />}
+        {isLoading ? (
+          <div>Loading</div>
+        ) : (
+          <IssueList issues={issues} handleIssueClick={handleIssueClick} />
+        )}
       </Container>
     </div>
   );

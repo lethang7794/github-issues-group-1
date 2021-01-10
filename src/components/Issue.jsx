@@ -2,7 +2,7 @@ import React from "react";
 import Moment from "react-moment";
 import Label from "./Label";
 
-const Issue = ({ issue }) => {
+const Issue = ({ issue, handleIssueClick }) => {
   if (!issue) return null;
 
   let id = issue.id;
@@ -13,7 +13,7 @@ const Issue = ({ issue }) => {
   let updated_at = issue.updated_at;
   let body = issue.body;
   let labels = issue.labels;
-  let comments = issue.comments;
+  // let comments = issue.comments;
 
   const truncateString = (str, num) => {
     if (!str) return null;
@@ -22,7 +22,7 @@ const Issue = ({ issue }) => {
   };
 
   return (
-    <li key={id} className="issue-item">
+    <li key={id} className="issue-item" onClick={() => handleIssueClick(issue)}>
       <img src={avatar_url} alt={`${owner}`} className="avatar mr-3" />
       {/*Owner Avatar*/}
       <div className="content-body">
@@ -33,7 +33,7 @@ const Issue = ({ issue }) => {
           {labels.length >= 0 && (
             <ul className="labels reset">
               {labels.map((label) => (
-                <Label label={label} />
+                <Label key={label.id} label={label} />
               ))}
             </ul>
           )}
