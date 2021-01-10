@@ -15,7 +15,7 @@ const IssueModal = ({ showModal, handleCloseModal, issue }) => {
     fetchData();
   }, [issue]);
   return (
-    <Modal show={showModal} onHide={handleCloseModal}>
+    <Modal className="Modal" show={showModal} onHide={handleCloseModal}>
       <Modal.Header closeButton>
         <Modal.Title>{issue.title}</Modal.Title>
       </Modal.Header>
@@ -24,13 +24,12 @@ const IssueModal = ({ showModal, handleCloseModal, issue }) => {
           <li>{c.body}</li>
         ))}
       </ul>
-      <Modal.Body>{issue.body}</Modal.Body>
+      <Modal.Body>
+        <ReactMarkdown>{issue.body}</ReactMarkdown>
+      </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onclick={handleCloseModal}>
+        <Button variant="secondary" onClick={handleCloseModal}>
           Close
-        </Button>
-        <Button variant="primary" onclick={handleCloseModal}>
-          Save Changes
         </Button>
       </Modal.Footer>
     </Modal>

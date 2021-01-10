@@ -15,7 +15,7 @@ const ErrorMessage = ({ error }) => {
   return (
     <Alert>
       <Alert.Heading>
-        <div class="error-message-wrapper">{message}</div>
+        <div className="error-message-wrapper">{message}</div>
       </Alert.Heading>
     </Alert>
   );

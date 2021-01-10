@@ -14,13 +14,25 @@ function App() {
   const [issues, setIssues] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedIssue, setSelectedIssue] = useState({});
-  const [searchTerm, setSearchTerm] = useState("");
+
+  let initialSearchTerm;
+  if (localStorage.getItem("searchTerm")) {
+    initialSearchTerm = localStorage.getItem("searchTerm");
+  } else {
+    initialSearchTerm = "octocat/hello-world";
+  }
+
+  const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
   const [url, setUrl] = useState(
-    "https://api.github.com/repos/octocat/hello-world/issues"
+    `https://api.github.com/repos/${initialSearchTerm}/issues`
   );
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("searchTerm", searchTerm);
+  }, [searchTerm]);
 
   useEffect(() => {
     async function fetchData() {
@@ -30,24 +42,20 @@ function App() {
 
         let response = await fetch(url);
         let result = await response.json();
-
         console.log(response);
+
         if (response.ok) {
           setIssues(result);
         } else {
-          console.log(
-            'There is an error. We still receive a response from the server. But it says somethings, e.g. "Not Found!"'
-          );
+          console.log("Error in response");
           setIssues([]);
           setIsError(true);
           setError(["response", response.status, response.statusText]);
         }
       } catch (error) {
+        console.log("Error in fetch");
         setIsError(true);
         setError(["fetch"]);
-        console.log(
-          "There is an error. e.g. No internet. We don't receive any response from the server."
-        );
       }
       setIsLoading(false);
     }
@@ -56,11 +64,14 @@ function App() {
   }, [url]);
 
   const handleClick = () => {
-    setUrl(`https://api.github.com/repos/${searchTerm}/issues`);
-  };
+    // Tidy up the searchTerm: remove http://github.com at the beginning and the slash at the end.
+    let newSearchTerm = searchTerm.replaceAll(
+      /^https:\/\/github\.com\/|\/$/g,
+      ""
+    );
 
-  const handleClose = () => {
-    setShowModal(false);
+    setSearchTerm(newSearchTerm);
+    setUrl(`https://api.github.com/repos/${newSearchTerm}/issues`);
   };
 
   const handleChange = (e) => {
@@ -84,7 +95,7 @@ function App() {
         handleClick={handleClick}
         searchTerm={searchTerm}
       />
-      <Container class="col-sm-12 col-lg-9 m-sm-0">
+      <Container className="col-sm-12 col-lg-9">
         {isError && <ErrorMessage error={error} />}
         {isLoading ? (
           <Loader

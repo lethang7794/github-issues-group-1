@@ -53,11 +53,6 @@
   font-size: 1.3rem;
 }
 
-#noUnderline {
-  text-decoration: none;
-  color: rgb(59, 59, 59);
-}
-
 .error-message-wrapper {
   border: 2px solid #d64641;
   text-align: center;
@@ -66,20 +61,32 @@
 /* ========================================================
                           ISSUES
 ==========================================================*/
+.issues {
+  padding-left: 0;
+}
 
 .issue-item {
-  padding: 2rem 0;
+  padding: 1rem 0;
   display: flex;
-  justify-content: center;
+  margin: 1rem 1rem;
+  padding: 1rem;
+
+  /* Google's weather card */
+  border-radius: 8px;
+  border: 1px solid #dfe1e5;
+  /* justify-content: center; */
   border-bottom: 1px solid lightgray;
 }
 .issue-item .content-body {
-  width: calc(90% - 9em);
+  /* width: calc(90% - 9em); */
+  width: 100%;
 }
 
 .issue-item .content-body .title {
   margin-right: 0.8rem;
+  font-weight: bold;
 }
+
 .issue-item:hover {
   background-color: rgb(241, 241, 241);
 }
@@ -89,8 +96,8 @@
 }
 
 .issue-item .avatar {
-  width: 9em;
-  height: 9em;
+  min-width: 2em;
+  height: 2em;
 }
 
 .issue-item .title {
@@ -100,6 +107,34 @@
 .issue-item .gray-text {
   color: rgb(145, 145, 145);
   margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+.issue-item .number {
+  margin-right: 0.5rem;
+}
+
+.issue__body {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ========================================================
+                         LABELS
+==========================================================*/
+ul.reset {
+  text-indent: 0;
+  list-style-type: none;
+  padding: 0;
+}
+
+ul.labels li,
+ul.labels ul li {
+  margin: 0;
+}
+
+.labels {
+  display: inline;
 }
 
 .issue-item .user-id {
@@ -135,4 +170,26 @@
 .Spinner {
   display: flex;
   justify-content: center;
+}
+
+.Modal {
+  padding-right: 17px;
+}
+
+.Modal .modal-title {
+  font-weight: bold;
+}
+
+.Modal .modal-dialog {
+  max-width: 992px;
+}
+
+.Modal .modal-content {
+  padding: 1rem;
+  word-break: break-all;
+}
+
+.Modal .modal-body {
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
