@@ -3,7 +3,7 @@ import Moment from "react-moment";
 
 const IssueList = ({ issues }) => {
   return (
-    <div>
+    <>
       <h2>{issues.id} Issue list</h2>
       <ul>
         {issues.map((i) => (
@@ -17,23 +17,26 @@ const IssueList = ({ issues }) => {
             <div className="content-body">
               <h4>
                 {/* Issue Title with Number of the issue */}
-                <span className="title">{i.id}</span>
+                <span className="title">#{i.id}</span>
                 <span className="title">{i.title}</span>
               </h4>
-              <div className="">
-                <span>@{i.user.login}</span>
-                <span>{i.comments}</span>
-                <div>{i.body}</div>
-                <span>
-                  <Moment fromNow>{i.updated_at}</Moment>
-                </span>
-                <div>Labels of the issue</div>
+              <div className="sub-body">
+                <span className="gray-text">@{i.user.login}</span>
+                <div className="description">{i.body}</div>
+                <div className="time-and-comment">
+                  <span>
+                    <Moment fromNow className="gray-text">
+                      {i.updated_at}
+                    </Moment>
+                  </span>
+                  <span className="gray-text">comment {i.comments}</span>
+                </div>
               </div>
             </div>
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-.title {
+.main-title {
   margin-top: 7rem;
   margin-bottom: 2rem;
 }
@@ -38,20 +38,48 @@
 /* ========================================================
                           ISSUES
 ==========================================================*/
+
 .issue-item {
+  padding: 2rem 2rem 2rem 0;
   display: flex;
-  margin: 2rem 0;
+  /* margin: 2rem 0; */
+  border-bottom: 1px solid lightgray;
+}
+.issue-item .content-body {
+  width: 55em;
+}
+
+.issue-item .content-body .title {
+  margin-right: 0.8rem;
+}
+.issue-item:hover {
+  background-color: lightgray;
 }
 .issue-item ul li {
   list-style-type: none;
 }
 
 .issue-item .avatar {
-  width: 8em;
-  height: 8em;
+  width: 9em;
+  height: 9em;
 }
 
 .issue-item .title {
   min-width: 5em;
+}
+
+.issue-item .gray-text {
+  color: rgb(145, 145, 145);
   margin-right: 0.5rem;
+}
+
+.issue-item .description {
+  height: 8em;
+  display: flex;
+  align-items: center;
+}
+
+.issue-item .time-and-comment {
+  display: flex;
+  justify-content: space-between;
 }
