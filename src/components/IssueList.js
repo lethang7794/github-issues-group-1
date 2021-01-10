@@ -3,9 +3,9 @@ import Moment from "react-moment";
 
 const IssueList = ({ issues }) => {
   return (
-    <>
+    <div>
       <h2>{issues.id} Issue list</h2>
-      <ul>
+      <ul className="issues">
         {issues.map((i) => (
           <li key={i.id} className="issue-item">
             <img
@@ -23,20 +23,19 @@ const IssueList = ({ issues }) => {
               <div>
                 <span className="gray-text user-id">@{i.user.login}</span>
                 <div className="description">{i.body}</div>
-                <div className="time-and-comment">
+                <div className="time-and-comment gray-text">
                   <span>
-                    <Moment fromNow className="gray-text">
-                      {i.updated_at}
-                    </Moment>
+                    <span className="last-updated">Last updated:</span>
+                    <Moment fromNow>{i.updated_at}</Moment>
                   </span>
-                  <span className="gray-text">comment {i.comments}</span>
+                  <span>comment {i.comments}</span>
                 </div>
               </div>
             </div>
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };
 

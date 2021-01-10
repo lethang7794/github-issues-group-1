@@ -62,12 +62,14 @@ function App() {
     <div className="App">
       <SiteNavBar />
       <Container>
-        <h1 className="text-center main-title">GitHub Issues Browser</h1>
-        <SearchForm
-          handleChange={handleChange}
-          handleClick={handleClick}
-          searchTerm={searchTerm}
-        />
+        <div className="fixed">
+          <h1 className="text-center main-title">GitHub Issues Browser</h1>
+          <SearchForm
+            handleChange={handleChange}
+            handleClick={handleClick}
+            searchTerm={searchTerm}
+          />
+        </div>
         {isError && <ErrorMessage error={error} />}
         <IssueList issues={issues} />
       </Container>

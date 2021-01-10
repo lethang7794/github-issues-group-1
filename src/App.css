@@ -3,6 +3,15 @@
   margin-bottom: 2rem;
 }
 
+.fixed {
+  background-color: white;
+  position: fixed;
+  width: 70em;
+}
+
+.issues {
+  margin-top: 18em;
+}
 /* ========================================================
                        SEARCH FORM
 ==========================================================*/
@@ -11,6 +20,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 2em;
 }
 .search-form-wrapper input,
 .search-form-wrapper button {
@@ -53,8 +63,9 @@
   margin-right: 0.8rem;
 }
 .issue-item:hover {
-  background-color: lightgray;
+  background-color: rgb(241, 241, 241);
 }
+
 .issue-item ul li {
   list-style-type: none;
 }
@@ -78,13 +89,27 @@
 }
 
 .issue-item .description {
-  height: 8em;
-  display: flex;
-  align-items: center;
+  height: 9em;
   font-size: 1.5rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin: 1rem 0;
+  text-justify: inter-word;
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.description::-webkit-scrollbar {
+  display: none;
 }
 
 .issue-item .time-and-comment {
   display: flex;
   justify-content: space-between;
+}
+
+.issue-item .content-body .last-updated {
+  margin-right: 0.5rem;
 }
