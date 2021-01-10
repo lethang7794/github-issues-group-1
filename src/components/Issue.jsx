@@ -2,7 +2,7 @@ import React from "react";
 import Moment from "react-moment";
 import Label from "./Label";
 
-const Issue = ({ issue }) => {
+const Issue = ({ issue, handleIssueClick }) => {
   if (!issue) return null;
 
   let id = issue.id;
@@ -13,7 +13,7 @@ const Issue = ({ issue }) => {
   let updated_at = issue.updated_at;
   let body = issue.body;
   let labels = issue.labels;
-  let comments = issue.comments;
+  // let comments = issue.comments;
 
   const truncateString = (str, num) => {
     if (!str) return null;
@@ -22,12 +22,10 @@ const Issue = ({ issue }) => {
   };
 
   return (
-    <li key={id} className="issue-item">
+    <li key={id} className="issue-item" onClick={() => handleIssueClick(issue)}>
       <img src={avatar_url} alt={`${owner}`} className="avatar mr-3" />
-      {/*Owner Avatar*/}
       <div className="content-body">
         <h4>
-          {/* Issue Title with Number of the issue */}
           <span className="title">{title}</span>
           <span className="number">#{number}</span>
           {labels.length >= 0 && (
@@ -39,11 +37,18 @@ const Issue = ({ issue }) => {
           )}
         </h4>
         <div className="">
-          <span className="issue__owner">@{owner}</span>
           <div className="issue__body">{truncateString(body, 80)}</div>
-          <span className="issue__updated_at">
-            <Moment fromNow>{updated_at}</Moment>
-          </span>
+        </div>
+        <div>
+          <span className="gray-text user-id">@{owner}</span>
+          {/* <div className="description">{body}</div> */}
+          <div className="time-and-comment gray-text">
+            <span>
+              <span className="last-updated">Last updated:</span>
+              <Moment fromNow>{updated_at}</Moment>
+            </span>
+            {/* <span>comment {comments}</span> */}
+          </div>
         </div>
       </div>
     </li>
