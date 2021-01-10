@@ -6,10 +6,13 @@ import IssueList from "./components/IssueList";
 import SearchForm from "./components/SearchForm";
 import ErrorMessage from "./components/ErrorMessage";
 import SiteNavBar from "./components/SiteNavBar";
+import IssueModal from "./components/IssueModal";
 
 function App() {
   const [issues, setIssues] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("octocat/hello-world");
+  const [showModal, setShowModal] = useState(false);
+  const [selectedIssue, setSelectedIssue] = useState({});
+  const [searchTerm, setSearchTerm] = useState("");
   const [url, setUrl] = useState(
     "https://api.github.com/repos/octocat/hello-world/issues"
   );
@@ -19,49 +22,48 @@ function App() {
   // Can only pass the error type, status, status text, url as an array.
   const [error, setError] = useState([]);
 
-  const [isLoading, setIsLoading] = useState(false);
-
   useEffect(() => {
     async function fetchData() {
       try {
-        // Show loading Spinner when beginning fetching
-        setIsLoading(true);
-
         // Reset isError state, later if there is an error, set isError to true.
         setIsError(false);
 
         let response = await fetch(url);
         let result = await response.json();
-        console.log(response);
 
+        console.log(response);
         if (response.ok) {
           setIssues(result);
         } else {
-          console.log("Error in response");
-          setIssues([]);
+          console.log(
+            'There is an error. We still receive a response from the server. But it says somethings, e.g. "Not Found!"'
+          );
           setIsError(true);
           setError(["response", response.status, response.statusText]);
         }
       } catch (error) {
-        console.log("Error in fetch");
         setIsError(true);
         setError(["fetch"]);
+        console.log(
+          "There is an error. e.g. No internet. We don't receive any response from the server."
+        );
       }
-      setIsLoading(false);
     }
 
     fetchData();
   }, [url]);
 
   const handleClick = () => {
-    // Tidy up the searchTerm: remove http://github.com at the beginning and the slash at the end.
-    let newSearchTerm = searchTerm.replaceAll(
-      /^https:\/\/github\.com\/|\/$/g,
-      ""
-    );
+    setUrl(`https://api.github.com/repos/${searchTerm}/issues`);
+  };
 
-    setSearchTerm(newSearchTerm);
-    setUrl(`https://api.github.com/repos/${newSearchTerm}/issues`);
+  const handleIssueClick = (i) => {
+    setShowModal(true);
+    setSelectedIssue(i);
+  };
+
+  const handleClose = () => {
+    setShowModal(false);
   };
 
   const handleChange = (e) => {
@@ -79,9 +81,13 @@ function App() {
           searchTerm={searchTerm}
         />
         {isError && <ErrorMessage error={error} />}
-
-        {isLoading ? <div>Loading</div> : <IssueList issues={issues} />}
+        <IssueList issues={issues} handleIssueClick={handleIssueClick} />
       </Container>
+      <IssueModal
+        i={selectedIssue}
+        showModal={showModal}
+        handleClose={handleClose}
+      />
     </div>
   );
 }

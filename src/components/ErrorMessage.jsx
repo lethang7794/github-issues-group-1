@@ -1,4 +1,5 @@
 import React from "react";
+import Alert from "react-bootstrap/Alert";
 
 // Check the error type, status from error array and show whatever we want.
 const ErrorMessage = ({ error }) => {
@@ -11,7 +12,15 @@ const ErrorMessage = ({ error }) => {
     message = "Error in fetch";
   }
 
-  return <div>{message}</div>;
+  return (
+    <Alert>
+      <Alert.Heading>
+        <container>
+          <div class="error-message-wrapper">{message}</div>
+        </container>
+      </Alert.Heading>
+    </Alert>
+  );
 };
 
 export default ErrorMessage;
