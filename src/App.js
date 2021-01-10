@@ -84,7 +84,7 @@ function App() {
     <div className="App">
       <SiteNavBar />
       <Container>
-        <h1 className="text-center title">GitHub Issues Browser</h1>
+        <h1 className="text-center app__title">GitHub Issues Browser</h1>
         <SearchForm
           handleChange={handleChange}
           handleClick={handleClick}
