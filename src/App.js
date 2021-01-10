@@ -19,6 +19,7 @@ function App() {
   }
 
   const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
+  const [lastPage, setLastPage] = useState(1);
   const [url, setUrl] = useState(
     `https://api.github.com/repos/${initialSearchTerm}/issues`
   );
@@ -59,6 +60,16 @@ function App() {
 
         if (response.ok) {
           setIssues(result);
+
+          let headersLink = response.headers.get("Link");
+          let lastPageRegEx = /\d+(?=>; rel="last")/g;
+          let lastPageMatch = headersLink.match(lastPageRegEx);
+          console.log(lastPageMatch);
+
+          if (lastPageMatch.length > 0) {
+            let lastPage = lastPageMatch[0];
+            setLastPage(lastPage);
+          }
         } else {
           console.log("Error in response");
           setIssues([]);
@@ -76,6 +87,9 @@ function App() {
     fetchData();
   }, [url]);
 
+  /* ========================================================
+                          SEARCH FORM
+  ==========================================================*/
   const handleClick = () => {
     // Tidy up the searchTerm: remove http://github.com at the beginning and the slash at the end.
     let newSearchTerm = searchTerm.replaceAll(
@@ -91,10 +105,20 @@ function App() {
     setSearchTerm(e.target.value);
   };
 
+  /* ========================================================
+                          ISSUE MODAL
+  ==========================================================*/
   const handleIssueClick = (issue) => {
     console.log(issue);
     setSelectedIssue(issue);
     setShowModal(true);
+  };
+
+  /* ========================================================
+                          PAGINATION
+  ==========================================================*/
+  const handleNextPage = () => {
+    console.log("NEXT PAGE, PLEASE!");
   };
 
   return (
