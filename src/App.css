@@ -38,20 +38,50 @@
 /* ========================================================
                           ISSUES
 ==========================================================*/
+.issues {
+  padding-left: 0;
+}
+
 .issue-item {
   display: flex;
-  margin: 2rem 0;
+  margin: 1rem 0;
+  padding: 1rem;
+
+  /* Google's weather card */
+  border-radius: 8px;
+  border: 1px solid #dfe1e5;
 }
 .issue-item ul li {
   list-style-type: none;
 }
 
 .issue-item .avatar {
-  min-width: 8em;
-  height: 8em;
+  min-width: 2em;
+  height: 2em;
 }
 
 .issue-item .title {
   min-width: 5em;
   margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+.issue-item .number {
+  margin-right: 0.5rem;
+}
+
+/* ========================================================
+                         LABELS
+==========================================================*/
+ul.reset,
+ul.reset li,
+ul.reset ul li {
+  margin: 0;
+  padding: 0;
+  text-indent: 0;
+  list-style-type: none;
+}
+
+.labels {
+  display: inline;
 }

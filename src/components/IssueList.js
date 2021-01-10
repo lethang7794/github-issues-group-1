@@ -7,7 +7,7 @@ const IssueList = ({ issues }) => {
   return (
     <div>
       <h2>Issue list</h2>
-      <ul>
+      <ul className="issues">
         {issues.map((i) => (
           <Issue issue={i} />
         ))}

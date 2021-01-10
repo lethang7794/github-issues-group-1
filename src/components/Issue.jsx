@@ -15,6 +15,12 @@ const Issue = ({ issue }) => {
   let labels = issue.labels;
   let comments = issue.comments;
 
+  const truncateString = (str, num) => {
+    if (!str) return null;
+    if (str.length <= num) return str;
+    return str.slice(0, num) + "...";
+  };
+
   return (
     <li key={id} className="issue-item">
       <img src={avatar_url} alt={`${owner}`} className="avatar mr-3" />
@@ -23,25 +29,21 @@ const Issue = ({ issue }) => {
         <h4>
           {/* Issue Title with Number of the issue */}
           <span className="title">{title}</span>
-          <span className="title">#{number}</span>
+          <span className="number">#{number}</span>
+          {labels.length >= 0 && (
+            <ul className="labels reset">
+              {labels.map((label) => (
+                <Label label={label} />
+              ))}
+            </ul>
+          )}
         </h4>
         <div className="">
-          <span>@{owner}</span>
-          <span>{comments}</span>
-          <div>{body}</div>
-          <span>
+          <span className="issue__owner">@{owner}</span>
+          <div className="issue__body">{truncateString(body, 80)}</div>
+          <span className="issue__updated_at">
             <Moment fromNow>{updated_at}</Moment>
           </span>
-          {labels.length > 0 && (
-            <div>
-              <p>Labels</p>
-              <ul>
-                {labels.map((label) => (
-                  <Label label={label} />
-                ))}
-              </ul>
-            </div>
-          )}
         </div>
       </div>
     </li>
