@@ -89,6 +89,11 @@
   width: 100%;
 }
 
+.issue-item .content-body h4 {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .issue-item .content-body .title {
   margin-right: 0.8rem;
   font-weight: bold;
