@@ -2,7 +2,7 @@
 
 Created with love by: `Jade Ha Tuan Thang`
 
-View online at: [github-issue-group1.netlify.app](github-issue-group1.netlify.app)
+View online at: [github-issue-team1.netlify.app](github-issue-team1.netlify.app)
 
 <!-- One or two sentence summary of your project, anything fun that you liked. -->
 
