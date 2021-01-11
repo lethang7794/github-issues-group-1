@@ -19,7 +19,7 @@ function App() {
   if (localStorage.getItem("searchTerm")) {
     initialSearchTerm = localStorage.getItem("searchTerm");
   } else {
-    initialSearchTerm = "octocat/hello-world";
+    initialSearchTerm = "facebook/react";
   }
 
   const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
