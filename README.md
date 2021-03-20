@@ -2,9 +2,9 @@
 
 Created with love by: `Jade Ha Tuan Thang`
 
-View online at: [[github-issue-team1.netlify.app](github-issue-team1.netlify.app)](https://lqt-github-issues-browser.netlify.app/)
+View online at: [https://lqt-github-issues-browser.netlify.app/](https://lqt-github-issues-browser.netlify.app/)
 
-<!-- One or two sentence summary of your project, anything fun that you liked. -->
+Summary: A browser for issues of a Github repo.
 
 ## Video Walkthrough
 
