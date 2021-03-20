@@ -9,6 +9,7 @@ import ErrorMessage from './components/ErrorMessage';
 import SiteNavBar from './components/SiteNavBar';
 import IssueModal from './components/IssueModal';
 import Loader from 'react-loader-spinner';
+import PaginationItem from './components/PaginationItem';
 
 function App() {
   const [issues, setIssues] = useState([]);
@@ -23,8 +24,12 @@ function App() {
   }
 
   const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
+
+  const [pageNum, setPageNum] = useState(1);
+  const [totalPageNum, setTotalPageNum] = useState(null);
+
   const [url, setUrl] = useState(
-    `https://api.github.com/repos/${initialSearchTerm}/issues`
+    `https://api.github.com/repos/${initialSearchTerm}/issues?page={pageNum}`
   );
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState([]);
@@ -45,11 +50,25 @@ function App() {
         console.log(response);
 
         if (response.ok) {
-          setIssues(result);
+          let headersLink = response.headers.get('Link');
+          let lastPageRegEx = /\d+(?=>; rel="last")/g;
+          let lastPageMatch = headersLink.match(lastPageRegEx);
+          console.log(lastPageMatch);
+
+          if (lastPageMatch.length > 0) {
+            let lastPage = lastPageMatch[0];
+            setTotalPageNum(lastPage);
+          }
+
+          setTimeout(() => {
+            setIssues(result);
+            setIsLoading(false);
+          }, 500);
         } else {
           console.log('Error in response');
           setIssues([]);
           setIsError(true);
+          setIsLoading(false);
 
           if (response.status === 404) {
             setError([
@@ -66,12 +85,12 @@ function App() {
         console.log('Error in fetch');
         setIsError(true);
         setError(['fetch']);
+        setIsLoading(false);
       }
-      setIsLoading(false);
     }
 
     fetchData();
-  }, [url, searchTerm]);
+  }, [url, searchTerm, pageNum]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -119,7 +138,15 @@ function App() {
             // timeout={3000} //3 secs
           />
         ) : (
-          <IssueList issues={issues} handleIssueClick={handleIssueClick} />
+          <>
+            <IssueList issues={issues} handleIssueClick={handleIssueClick} />
+            <PaginationItem
+              pageNum={pageNum}
+              setPageNum={setPageNum}
+              totalPageNum={totalPageNum}
+              loading={isLoading}
+            />
+          </>
         )}
       </Container>
       <IssueModal

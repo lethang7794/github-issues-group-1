@@ -2,7 +2,7 @@
 
 Created with love by: `Jade Ha Tuan Thang`
 
-View online at: [github-issue-team1.netlify.app](github-issue-team1.netlify.app)
+View online at: [[github-issue-team1.netlify.app](github-issue-team1.netlify.app)](https://lqt-github-issues-browser.netlify.app/)
 
 <!-- One or two sentence summary of your project, anything fun that you liked. -->
 
@@ -30,11 +30,11 @@ The following **required** functionalities are completed:
   - How long ago the issue was updated in a human-friendly format (e.g. 2 days ago) (Hint: [react-moment](https://www.npmjs.com/package/react-moment#installing))
   - Body of the Issue
   - Labels of the issue
-- [ ] The user should be able to see multiple pages of results, by clicking a pagination control.
+- [x] The user should be able to see multiple pages of results, by clicking a pagination control.
 
 The following **optional** features are implemented:
 
-- [ ] The user can see more details (**[including 5 comments of the issue](https://developer.github.com/v3/issues/comments/)**) in a modal that's opened by clicking on the title of the issue.
+- [x] The user can see more details (**[including 5 comments of the issue](https://developer.github.com/v3/issues/comments/)**) in a modal that's opened by clicking on the title of the issue.
 - [x] The user should be able to see the body of the issue rendered in markdown. (Hint: [react-markdown](https://github.com/rexxars/react-markdown))
 - [x] Fetching is an asynchronous operation, so you should display a loading [spinner](https://www.npmjs.com/package/react-spinners) whenever the app loads data, and hide it once the corresponding API call has been completed.
 - [x] Input Fuzzy Matching: the user should be able to type in either https://github.com/facebook/react or facebook/react, BOTH should work.
@@ -45,15 +45,9 @@ The following **additional** features are implemented:
 
 - [x] Change label's text color depends on background color.
 
-## Time Spent and Lessons Learned
-
-Time spent: **X** hours spent in total.
-
-<!-- Describe any challenges encountered while building the app. -->
-
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2021] [Jade Ha Tuan Thang]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -66,7 +60,3 @@ Time spent: **X** hours spent in total.
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
-```
-
-```
