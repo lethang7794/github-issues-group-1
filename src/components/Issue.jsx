@@ -15,11 +15,11 @@ const Issue = ({ issue, handleIssueClick }) => {
   let labels = issue.labels;
   let comments = issue.comments;
 
-  const truncateString = (str, num) => {
-    if (!str) return null;
-    if (str.length <= num) return str;
-    return str.slice(0, num) + '...';
-  };
+  // const truncateString = (str, num) => {
+  //   if (!str) return null;
+  //   if (str.length <= num) return str;
+  //   return str.slice(0, num) + '...';
+  // };
 
   return (
     <li key={id} className='issue-item' onClick={() => handleIssueClick(issue)}>
