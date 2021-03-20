@@ -71,7 +71,7 @@ function App() {
     }
 
     fetchData();
-  }, [url]);
+  }, [url, searchTerm]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
