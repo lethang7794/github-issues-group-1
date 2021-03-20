@@ -131,7 +131,7 @@ function App() {
         {isLoading && !isError ? (
           <Loader
             className='Spinner'
-            type='Puff'
+            type='Oval'
             color='#00BFFF'
             height={100}
             width={100}
@@ -140,12 +140,14 @@ function App() {
         ) : (
           <>
             <IssueList issues={issues} handleIssueClick={handleIssueClick} />
-            <PaginationItem
-              pageNum={pageNum}
-              setPageNum={setPageNum}
-              totalPageNum={totalPageNum}
-              loading={isLoading}
-            />
+            {!!totalPageNum && (
+              <PaginationItem
+                pageNum={pageNum}
+                setPageNum={setPageNum}
+                totalPageNum={totalPageNum}
+                loading={isLoading}
+              />
+            )}
           </>
         )}
       </Container>
