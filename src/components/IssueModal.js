@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import ReactMarkdown from 'react-markdown';
+import Comment from './Comment';
 
 const IssueModal = ({ showModal, handleCloseModal, issue }) => {
   const [comments, setComments] = useState([]);
+
   useEffect(() => {
     async function fetchData() {
       if (issue && issue.comments_url) {
@@ -14,18 +15,20 @@ const IssueModal = ({ showModal, handleCloseModal, issue }) => {
     }
     fetchData();
   }, [issue]);
+
   return (
     <Modal className='Modal' show={showModal} onHide={handleCloseModal}>
       <Modal.Header closeButton>
         <Modal.Title>{issue.title}</Modal.Title>
       </Modal.Header>
-      <ul>
-        {comments.map((c, idx) => (
-          <li key={idx}>{c.body}</li>
-        ))}
-      </ul>
       <Modal.Body>
-        <ReactMarkdown>{issue.body}</ReactMarkdown>
+        <Comment comment={issue} />
+
+        <div className='Comments'>
+          {comments.map((c, idx) => (
+            <Comment comment={c} key={idx} />
+          ))}
+        </div>
       </Modal.Body>
       <Modal.Footer>
         <Button variant='secondary' onClick={handleCloseModal}>

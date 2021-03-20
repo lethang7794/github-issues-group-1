@@ -60,7 +60,7 @@ function App() {
             return;
           }
 
-          setError(['response', response.status, response.statusText]);
+          setError(['response', response.status, result.message]);
         }
       } catch (error) {
         console.log('Error in fetch');
