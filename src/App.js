@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { Container } from "react-bootstrap";
-import IssueList from "./components/IssueList";
-import SearchForm from "./components/SearchForm";
-import ErrorMessage from "./components/ErrorMessage";
-import SiteNavBar from "./components/SiteNavBar";
-import IssueModal from "./components/IssueModal";
-import Loader from "react-loader-spinner";
+import React, { useState, useEffect } from 'react';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import { Container } from 'react-bootstrap';
+import IssueList from './components/IssueList';
+import SearchForm from './components/SearchForm';
+import ErrorMessage from './components/ErrorMessage';
+import SiteNavBar from './components/SiteNavBar';
+import IssueModal from './components/IssueModal';
+import Loader from 'react-loader-spinner';
 
 function App() {
   const [issues, setIssues] = useState([]);
@@ -16,10 +16,10 @@ function App() {
   const [selectedIssue, setSelectedIssue] = useState({});
 
   let initialSearchTerm;
-  if (localStorage.getItem("searchTerm")) {
-    initialSearchTerm = localStorage.getItem("searchTerm");
+  if (localStorage.getItem('searchTerm')) {
+    initialSearchTerm = localStorage.getItem('searchTerm');
   } else {
-    initialSearchTerm = "facebook/react";
+    initialSearchTerm = 'facebook/react';
   }
 
   const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
@@ -31,7 +31,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem("searchTerm", searchTerm);
+    localStorage.setItem('searchTerm', searchTerm);
   }, [searchTerm]);
 
   useEffect(() => {
@@ -47,15 +47,25 @@ function App() {
         if (response.ok) {
           setIssues(result);
         } else {
-          console.log("Error in response");
+          console.log('Error in response');
           setIssues([]);
           setIsError(true);
-          setError(["response", response.status, response.statusText]);
+
+          if (response.status === 404) {
+            setError([
+              'response',
+              response.status,
+              `Repo ${searchTerm} not found!`,
+            ]);
+            return;
+          }
+
+          setError(['response', response.status, response.statusText]);
         }
       } catch (error) {
-        console.log("Error in fetch");
+        console.log('Error in fetch');
         setIsError(true);
-        setError(["fetch"]);
+        setError(['fetch']);
       }
       setIsLoading(false);
     }
@@ -67,7 +77,7 @@ function App() {
     // Tidy up the searchTerm: remove http://github.com at the beginning and the slash at the end.
     let newSearchTerm = searchTerm.replaceAll(
       /^https:\/\/github\.com\/|\/$/g,
-      ""
+      ''
     );
 
     setSearchTerm(newSearchTerm);
@@ -81,27 +91,27 @@ function App() {
   const handleCloseModal = () => setShowModal(false);
 
   const handleIssueClick = (issue) => {
-    console.log("Issue that was clicked ", issue);
+    console.log('Issue that was clicked ', issue);
     setSelectedIssue(issue);
     setShowModal(true);
   };
 
   return (
-    <div className="App">
+    <div className='App'>
       <SiteNavBar />
-      <h1 className="text-center main-title">GitHub Issues Browser</h1>
+      <h1 className='text-center main-title'>GitHub Issues Browser</h1>
       <SearchForm
         handleChange={handleChange}
         handleClick={handleClick}
         searchTerm={searchTerm}
       />
-      <Container className="col-sm-12 col-lg-9">
+      <Container className='col-sm-12 col-lg-9'>
         {isError && <ErrorMessage error={error} />}
-        {isLoading ? (
+        {isLoading && !isError ? (
           <Loader
-            className="Spinner"
-            type="Puff"
-            color="#00BFFF"
+            className='Spinner'
+            type='Puff'
+            color='#00BFFF'
             height={100}
             width={100}
             // timeout={3000} //3 secs
