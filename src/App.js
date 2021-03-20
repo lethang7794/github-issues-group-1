@@ -73,7 +73,9 @@ function App() {
     fetchData();
   }, [url]);
 
-  const handleClick = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     // Tidy up the searchTerm: remove http://github.com at the beginning and the slash at the end.
     let newSearchTerm = searchTerm.replaceAll(
       /^https:\/\/github\.com\/|\/$/g,
@@ -102,7 +104,7 @@ function App() {
       <h1 className='text-center main-title'>GitHub Issues Browser</h1>
       <SearchForm
         handleChange={handleChange}
-        handleClick={handleClick}
+        handleSubmit={handleSubmit}
         searchTerm={searchTerm}
       />
       <Container className='col-sm-12 col-lg-9'>

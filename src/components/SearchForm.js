@@ -1,16 +1,16 @@
 import React from 'react';
 
-const SearchForm = ({ handleChange, searchTerm, handleClick }) => {
+const SearchForm = ({ handleChange, searchTerm, handleSubmit }) => {
   return (
-    <div className='search-form-wrapper'>
+    <form onSubmit={handleSubmit} className='search-form-wrapper'>
       <input
         type='text'
         onChange={handleChange}
         value={searchTerm}
         placeholder='owner/repo-name'
       />
-      <button onClick={handleClick}>Search</button>
-    </div>
+      <button>Search</button>
+    </form>
   );
 };
 
