@@ -21,7 +21,10 @@ const Comment = ({ comment, key }) => {
           border: '1px solid rgba(0,0,0,.2)',
         }}
       >
-        <div className='px-3 py-1 border-bottom'>
+        <div
+          className='px-3 py-1 border-bottom'
+          style={{ backgroundColor: 'rgba(0,0,0,.05)' }}
+        >
           <span style={{ fontWeight: 'bold' }}>{owner}</span>
           <span style={{ color: 'gray' }}> commented </span>
           <Moment fromNow style={{ color: 'gray' }}>
