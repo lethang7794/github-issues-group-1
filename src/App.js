@@ -29,7 +29,7 @@ function App() {
   const [totalPageNum, setTotalPageNum] = useState(null);
 
   const [url, setUrl] = useState(
-    `https://api.github.com/repos/${initialSearchTerm}/issues?page={pageNum}`
+    `https://api.github.com/repos/${initialSearchTerm}/issues?page=${pageNum}`
   );
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState([]);
@@ -37,7 +37,12 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('searchTerm', searchTerm);
-  }, [searchTerm]);
+  }, [searchTerm, pageNum]);
+
+  useEffect(() => {
+    let searchTerm = localStorage.getItem('searchTerm');
+    setUrl(`https://api.github.com/repos/${searchTerm}/issues?page=${pageNum}`);
+  }, [pageNum]);
 
   useEffect(() => {
     async function fetchData() {
@@ -90,7 +95,7 @@ function App() {
     }
 
     fetchData();
-  }, [url, searchTerm, pageNum]);
+  }, [url, searchTerm]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -102,7 +107,8 @@ function App() {
     );
 
     setSearchTerm(newSearchTerm);
-    setUrl(`https://api.github.com/repos/${newSearchTerm}/issues`);
+    setPageNum(1);
+    setUrl(`https://api.github.com/repos/${searchTerm}/issues?page=${pageNum}`);
   };
 
   const handleChange = (e) => {
@@ -140,7 +146,7 @@ function App() {
         ) : (
           <>
             <IssueList issues={issues} handleIssueClick={handleIssueClick} />
-            {!!totalPageNum && (
+            {!!totalPageNum && totalPageNum > 1 && (
               <PaginationItem
                 pageNum={pageNum}
                 setPageNum={setPageNum}
